@@ -180,7 +180,16 @@ NSDictionary *keyedStuff = @{
 ## Categories
 
  * Categories should be named for the sort of functionality they provide. Don't create umbrella categories.
- * Category methods should always be prefixed FOR EXTERNAL CLASSES.
+ * Category methods should always be prefixed for 3rd party classes (i.e. for classes from Apple & 3rd party frameworks):
+ 
+```
+@interface UIColor (MFBRGB)
+
++ (instancetype)mfb_colorWithRed:(uint8_t)red green:(uint8_t)green blue:(uint8_t)blue;
+
+@end
+```
+ 
  * If you need to expose private methods for subclasses or unit testing, create a class extension named `Class+Private`.
 
 ## Protocol Implementation
