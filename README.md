@@ -209,5 +209,5 @@ Proposed .clang-format file for use with Xcode. Find more on installing clang-fo
 Easy way to add this clang-format file to your project is:
 * go to your project root
 * do the command:
- ```curl -o .clang-format https://raw.githubusercontent.com/gelosi/objective-c-style-guide/master/clang-format```
+ ```curl -o .clang-format https://raw.githubusercontent.com/flix-tech/objective-c-style-guide/master/clang-format```
 * add file to your project's git 
