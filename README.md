@@ -87,7 +87,7 @@ void GHAwesomeFunction(BOOL hasSomeArgs);
 Blah *a = (stuff == thing ? foo : bar);
 ```
 
-* Short form, `nil` coalescing ternary operators should avoid parentheses.
+ * Short form, `nil` coalescing ternary operators should avoid parentheses.
 
 ```objc
 Blah *b = thingThatCouldBeNil ?: defaultValue;
@@ -194,7 +194,7 @@ NSDictionary *keyedStuff = @{
 
 ## Protocol Implementation
 
-  * Avoid name collision between protocols and classes implementing protocols.
+ * Avoid name collision between protocols and classes implementing protocols.
 
 ## Nullability
 
@@ -230,7 +230,7 @@ NS_ASSUME_NONNULL_END
 Proposed .clang-format file for use with Xcode. Find more on installing clang-format tool with google. As an option of using clang-format with Xcode, I'd suggest [Alcatraz](http://alcatraz.io)
 
 Easy way to add this clang-format file to your project is:
-* go to your project root
-* do the command:
+ * go to your project root
+ * do the command:
  ```curl -o .clang-format https://raw.githubusercontent.com/flix-tech/objective-c-style-guide/master/clang-format```
-* add file to your project's git 
+ * add file to your project's git 
