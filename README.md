@@ -182,7 +182,7 @@ NSDictionary *keyedStuff = @{
  * Categories should be named for the sort of functionality they provide. Don't create umbrella categories.
  * Category methods should always be prefixed for 3rd party classes (i.e. for classes from Apple & 3rd party frameworks):
  
-```
+```objc
 @interface UIColor (MFBRGB)
 
 + (instancetype)mfb_colorWithRed:(uint8_t)red green:(uint8_t)green blue:(uint8_t)blue;
