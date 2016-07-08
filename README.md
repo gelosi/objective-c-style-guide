@@ -117,7 +117,7 @@ if (somethingIsBad) {
   return;
 }
 
-if (something == nil) {
+if (!something) {
 	// do stuff
 } else {
 	// do other stuff
