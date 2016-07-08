@@ -196,6 +196,29 @@ NSDictionary *keyedStuff = @{
 
   * Avoid name collision between protocols and classes implementing protocols.
 
+## Nullability
+
+ * Always wrap contents of header files in `NS_ASSUME_NONNULL_BEGIN`/`NS_ASSUME_NONNULL_END`.
+ * Using nullability in implementation files is up to you, but is encouraged.
+ * Always wrap contents of implementation files in `NS_ASSUME_NONNULL_BEGIN`/`NS_ASSUME_NONNULL_END` if nullability is used across the file.
+ * Never use `nonnull` or `_Nonnull` explicitly because there's a macro wrapping.
+ * Always use pretty version of nullability annotations whenever possible. Fallback to `_Nullable` etc. if and only if
+it's not possible to use nicer version.
+
+```objc
+#import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface MeinFernbusAPI : NSObject
+
+@property (nonatomic, nullable, readonly) NSURL *hostURL;
+
+@end
+
+NS_ASSUME_NONNULL_END
+```
+
 ## Tests
 
  * XCTest framework with OCMock (for mocking) should be used. Manual mocking is also possible when appropriate.
