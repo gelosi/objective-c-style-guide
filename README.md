@@ -180,12 +180,41 @@ NSDictionary *keyedStuff = @{
 ## Categories
 
  * Categories should be named for the sort of functionality they provide. Don't create umbrella categories.
- * Category methods should always be prefixed FOR EXTERNAL CLASSES.
+ * Category methods should always be prefixed for 3rd party classes (i.e. for classes from Apple & 3rd party frameworks):
+ 
+```
+@interface UIColor (MFBRGB)
+
++ (instancetype)mfb_colorWithRed:(uint8_t)red green:(uint8_t)green blue:(uint8_t)blue;
+
+@end
+```
+ 
  * If you need to expose private methods for subclasses or unit testing, create a class extension named `Class+Private`.
 
 ## Protocol Implementation
 
   * Avoid name collision between protocols and classes implementing protocols.
+
+## Nullability
+
+* Always wrap contents of header files in `NS_ASSUME_NONNULL_BEGIN`/`NS_ASSUME_NONNULL_END`.
+* Using nullability in implementation files is up to you, but is encouraged.
+* Always wrap content of implementation files in `NS_ASSUME_NONNULL_BEGIN`/`NS_ASSUME_NONNULL_END` if nullability is used across the file.
+
+```objc
+#import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface MeinFernbusAPI : NSObject
+
+...
+
+@end
+
+NS_ASSUME_NONNULL_END
+```
 
 ## Tests
 
@@ -200,5 +229,5 @@ Proposed .clang-format file for use with Xcode. Find more on installing clang-fo
 Easy way to add this clang-format file to your project is:
 * go to your project root
 * do the command:
- ```curl -o .clang-format https://raw.githubusercontent.com/gelosi/objective-c-style-guide/master/clang-format```
+ ```curl -o .clang-format https://raw.githubusercontent.com/flix-tech/objective-c-style-guide/master/clang-format```
 * add file to your project's git 
