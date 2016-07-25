@@ -87,7 +87,7 @@ void GHAwesomeFunction(BOOL hasSomeArgs);
 Blah *a = (stuff == thing ? foo : bar);
 ```
 
-* Short form, `nil` coalescing ternary operators should avoid parentheses.
+ * Short form, `nil` coalescing ternary operators should avoid parentheses.
 
 ```objc
 Blah *b = thingThatCouldBeNil ?: defaultValue;
@@ -117,7 +117,7 @@ if (somethingIsBad) {
   return;
 }
 
-if (something == nil) {
+if (!something) {
 	// do stuff
 } else {
 	// do other stuff
@@ -182,7 +182,7 @@ NSDictionary *keyedStuff = @{
  * Categories should be named for the sort of functionality they provide. Don't create umbrella categories.
  * Category methods should always be prefixed for 3rd party classes (i.e. for classes from Apple & 3rd party frameworks):
  
-```
+```objc
 @interface UIColor (MFBRGB)
 
 + (instancetype)mfb_colorWithRed:(uint8_t)red green:(uint8_t)green blue:(uint8_t)blue;
@@ -194,7 +194,30 @@ NSDictionary *keyedStuff = @{
 
 ## Protocol Implementation
 
-  * Avoid name collision between protocols and classes implementing protocols.
+ * Avoid name collision between protocols and classes implementing protocols.
+
+## Nullability
+
+ * Always wrap contents of header files in `NS_ASSUME_NONNULL_BEGIN`/`NS_ASSUME_NONNULL_END`.
+ * Using nullability in implementation files is up to you, but is encouraged.
+ * Always wrap contents of implementation files in `NS_ASSUME_NONNULL_BEGIN`/`NS_ASSUME_NONNULL_END` if nullability is used across the file.
+ * Never use `nonnull` or `_Nonnull` explicitly because there's a macro wrapping.
+ * Always use pretty version of nullability annotations whenever possible. Fallback to `_Nullable` etc. if and only if
+it's not possible to use nicer version.
+
+```objc
+#import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface MeinFernbusAPI : NSObject
+
+@property (nonatomic, nullable, readonly) NSURL *hostURL;
+
+@end
+
+NS_ASSUME_NONNULL_END
+```
 
 ## Tests
 
@@ -207,7 +230,7 @@ NSDictionary *keyedStuff = @{
 Proposed .clang-format file for use with Xcode. Find more on installing clang-format tool with google. As an option of using clang-format with Xcode, I'd suggest [Alcatraz](http://alcatraz.io)
 
 Easy way to add this clang-format file to your project is:
-* go to your project root
-* do the command:
+ * go to your project root
+ * do the command:
  ```curl -o .clang-format https://raw.githubusercontent.com/flix-tech/objective-c-style-guide/master/clang-format```
-* add file to your project's git 
+ * add file to your project's git 
