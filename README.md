@@ -60,7 +60,7 @@ Unless explicitly contradicted below, assume that all of Apple's guidelines appl
 
 ```objc
 @property (attributes) id<Protocol> object;
-@property (nonatomic, strong) NSObject<Protocol> *object;
+@property (nonatomic) NSObject<Protocol> *object;
 ```
 
  * C function declarations should have no space before the opening parenthesis, and should be namespaced just like a class.
