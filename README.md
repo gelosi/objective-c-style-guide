@@ -143,7 +143,7 @@ void (^blockName1)(void) = ^{
     // do some things
 };
 
-id (^blockName2)(id) = ^ id (id args) {
+id (^blockName2)(id) = ^id(id args) {
     // do some things
 };
 ```
