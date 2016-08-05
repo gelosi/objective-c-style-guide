@@ -4,7 +4,7 @@ AllowShortFunctionsOnASingleLine: None
 AlwaysBreakBeforeMultilineStrings: false
 BreakBeforeBinaryOperators: All
 BreakBeforeBraces: Linux
-ColumnLimit: 120
+ColumnLimit: 130
 ExperimentalAutoDetectBinPacking: true
 IndentCaseLabels: true
 IndentWidth: 4
