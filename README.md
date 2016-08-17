@@ -225,6 +225,8 @@ NS_ASSUME_NONNULL_END
  * When writing equality assertions, always pass actual value as a first argument and expected value as a second.
  * Always define mock objects as `id`, because types like `OCMockObject <ProtocolToMock> *` look overloaded and it's not always possible to declare the right type (i.e. when you're mocking a class, not protocol).
  * Try to avoid `andDo` while using mocks because using `NSInvocation` is error-prone. Consider using `andCall` or `+[OCMArg checkWithBlock:]` instead.
+ * Name test methods using following template: `test_<#method name or alias#>_<#conditions#>_<#expected outcome#>`.
+Use alias if the actual method name is too bulky. For simple tests without important preconditons and with obvious outcome (like JSON deserialization, for example) use simpler template: `test_<#method name or alias>`.
 
 ## clang-format
 
