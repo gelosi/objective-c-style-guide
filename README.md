@@ -230,10 +230,11 @@ Use alias if the actual method name is too bulky. For simple tests without impor
 
 ## clang-format
 
-Proposed .clang-format file for use with Xcode. Find more on installing clang-format tool with google. As an option of using clang-format with Xcode, I'd suggest [Alcatraz](http://alcatraz.io)
+Provided [clang-format](clang-format) file is ready to use with clang-format and corresponding Xcode plugins.
 
-Easy way to add this clang-format file to your project is:
- * go to your project root
- * do the command:
- ```curl -o .clang-format https://raw.githubusercontent.com/flix-tech/objective-c-style-guide/master/clang-format```
- * add file to your project's git 
+It's recommended to add this repo as a submodule and make a symlink:
+
+```bash
+$ git submodule add git@github.com:flix-tech/objective-c-style-guide.git code-style
+$ ln -s code-style/clang-format .clang-format
+```
