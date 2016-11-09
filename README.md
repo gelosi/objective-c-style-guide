@@ -93,11 +93,11 @@ Blah *a = (stuff == thing ? foo : bar);
 Blah *b = thingThatCouldBeNil ?: defaultValue;
 ```
 
- * Separate binary operands with a single space, but unary operands and casts with none:
+ * Separate binary operands and casts with a single space, but unary operands with none:
 
 ```c
 void *ptr = &value + 10 * 3;
-NewType a = (NewType)b;
+NewType a = (NewType) b;
 
 for (int i = 0; i < 10; i++) {
     doCoolThings();
