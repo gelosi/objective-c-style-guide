@@ -93,11 +93,11 @@ Blah *a = (stuff == thing ? foo : bar);
 Blah *b = thingThatCouldBeNil ?: defaultValue;
 ```
 
- * Separate binary operands with a single space, but unary operands and casts with none:
+ * Separate binary operands and casts with a single space, but unary operands with none:
 
 ```c
 void *ptr = &value + 10 * 3;
-NewType a = (NewType)b;
+NewType a = (NewType) b;
 
 for (int i = 0; i < 10; i++) {
     doCoolThings();
@@ -137,6 +137,7 @@ if (!something) {
  * Block definitions should omit their arguments if they are `void`.
  * Parameters in block types should be named unless the block is initialized immediately.
  * Reused blocks should have `typedef`ed name.
+ * Blocks as property declarations should have space on both sides of the asterisk.
 
 ```objc
 void (^blockName1)(void) = ^{
@@ -146,6 +147,8 @@ void (^blockName1)(void) = ^{
 id (^blockName2)(id) = ^id(id args) {
     // do some things
 };
+
+@property (nonatomic) NSObject * (^blockName3)
 ```
 
 ## Literals
@@ -224,13 +227,17 @@ NS_ASSUME_NONNULL_END
  * XCTest framework with OCMock (for mocking) should be used. Manual mocking is also possible when appropriate.
  * When writing equality assertions, always pass actual value as a first argument and expected value as a second.
  * Always define mock objects as `id`, because types like `OCMockObject <ProtocolToMock> *` look overloaded and it's not always possible to declare the right type (i.e. when you're mocking a class, not protocol).
+ * Try to avoid `andDo` while using mocks because using `NSInvocation` is error-prone. Consider using `andCall` or `+[OCMArg checkWithBlock:]` instead.
+ * Name test methods using following template: `test_<#method name or alias#>_<#conditions#>_<#expected outcome#>`.
+Use alias if the actual method name is too bulky. For simple tests without important preconditons and with obvious outcome (like JSON deserialization, for example) use simpler template: `test_<#method name or alias>`.
 
 ## clang-format
 
-Proposed .clang-format file for use with Xcode. Find more on installing clang-format tool with google. As an option of using clang-format with Xcode, I'd suggest [Alcatraz](http://alcatraz.io)
+Provided [clang-format](clang-format) file is ready to use with clang-format and corresponding Xcode plugins.
 
-Easy way to add this clang-format file to your project is:
- * go to your project root
- * do the command:
- ```curl -o .clang-format https://raw.githubusercontent.com/flix-tech/objective-c-style-guide/master/clang-format```
- * add file to your project's git 
+It's recommended to add this repo as a submodule and make a symlink:
+
+```bash
+$ git submodule add git@github.com:flix-tech/objective-c-style-guide.git code-style
+$ ln -s code-style/clang-format .clang-format
+```
