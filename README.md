@@ -137,6 +137,7 @@ if (!something) {
  * Block definitions should omit their arguments if they are `void`.
  * Parameters in block types should be named unless the block is initialized immediately.
  * Reused blocks should have `typedef`ed name.
+ * Blocks as property declarations should have space on both sides of the asterisk.
 
 ```objc
 void (^blockName1)(void) = ^{
@@ -146,6 +147,8 @@ void (^blockName1)(void) = ^{
 id (^blockName2)(id) = ^id(id args) {
     // do some things
 };
+
+@property (nonatomic) NSObject * (^blockName3)
 ```
 
 ## Literals
